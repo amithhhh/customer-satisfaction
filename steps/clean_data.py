@@ -9,8 +9,8 @@ from typing import Annotated,Tuple
 def clean_data(df:pd.DataFrame)->Tuple[
     Annotated[pd.DataFrame,'Xtrain'],
     Annotated[pd.DataFrame,'Xtest'],
-    Annotated[pd.DataFrame,'ytrain'],
-    Annotated[pd.DataFrame,'ytest']
+    Annotated[pd.Series,'ytrain'],
+    Annotated[pd.Series,'ytest']
 ]:
     try:
         preprocess = DataPreProcessingStrategy()
@@ -20,6 +20,7 @@ def clean_data(df:pd.DataFrame)->Tuple[
         data_cleaning = DataCleaning(processed_data,divide_strategy)
         Xtrain,Xtest,ytrain,ytest = data_cleaning.handle_data()
         logging.info("completed")
+        return Xtrain,Xtest,ytrain,ytest
     except Exception as e:
         logging.error("error!")
         raise e

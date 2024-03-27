@@ -4,7 +4,7 @@ from sklearn.linear_model import LinearRegression
 
 class Model(ABC):
     @abstractmethod
-    def train(self,Xtrain,ytrain):
+    def train(self,Xtrain,ytrain,**kwargs):
         pass
 class LinearregressionModel(Model):
     def train(self,Xtrain,ytrain,**kwargs):
